@@ -34,11 +34,7 @@ public class BlackJack {
         comp.addCard(deck.getTopCard());
 
         // holds turns counter
-        int turn = 1;
-        // prints current turn data
-        System.out.println("=== Turn " + turn + " ======================");
-        System.out.println("User's data: " + user);
-        System.out.println("Count: " + user.getCount() + "\n");
+        int turn = 0;
 
         // holds the decision to take a card
         boolean takeCard;
@@ -49,6 +45,11 @@ public class BlackJack {
         while (!comp.isDone() || !user.isDone()) {
             // user's logic
             if(!user.isDone()){
+                // prints current turn data
+                System.out.println("=== Turn " + ++turn + " ======================");
+                System.out.println("User's data: " + user);
+                System.out.println("Count: " + user.getCount() + "\n");
+
                 msg = this.user + "\nYour count is " + user.getCount() +
                         "\nDo you want to take a card?";
                 // ask user to take another card
@@ -61,10 +62,6 @@ public class BlackJack {
                     user.addCard(deck.getTopCard());
                     // recalculate hand if needed
                     user.recalculateHand();
-                    // prints current turn data
-                    System.out.println("=== Turn " + ++turn + " ======================");
-                    System.out.println("User's data: " + user);
-                    System.out.println("Count: " + user.getCount() + "\n");
                 }
                 // user decided to finish
                 else user.setDone();
