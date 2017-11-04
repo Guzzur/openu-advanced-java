@@ -7,7 +7,7 @@ public class Main {
 
         // (rand + rand) + (rand - rand)
         expressions.add(new AdditionExpression(new AdditionExpression(new AtomicExpression(randDouble()), new AtomicExpression(randDouble())),
-                new SubstractionExpression(new AtomicExpression(randDouble()), new AtomicExpression(randDouble()))));
+                        new SubstractionExpression(new AtomicExpression(randDouble()), new AtomicExpression(randDouble()))));
 
         // (rand - rand) - (rand - rand)
         expressions.add(new SubstractionExpression(new SubstractionExpression(new AtomicExpression(randDouble()), new AtomicExpression(randDouble())),
@@ -17,9 +17,9 @@ public class Main {
         expressions.add(new AdditionExpression(new AdditionExpression(new AtomicExpression(1), new AtomicExpression(2)),
                 new AdditionExpression(new AtomicExpression(3), new AtomicExpression(4))));
 
-        // 20 - 5 - 3 - 2 = 10
+        // (20 - 5) - (3 + 2) = 10
         expressions.add(new SubstractionExpression(new SubstractionExpression(new AtomicExpression(20), new AtomicExpression(5)),
-                new SubstractionExpression(new AtomicExpression(3), new AtomicExpression(2))));
+                new AdditionExpression(new AtomicExpression(3), new AtomicExpression(2))));
 
         for (Expression e : expressions) {
             System.out.println(e);
@@ -27,7 +27,7 @@ public class Main {
 
             for (Expression e_other : expressions) {
                 if (e != e_other && e.equals(e_other))
-                    System.out.println(e + " = " + e_other + " = " + e.calculate());
+                    System.out.println("Equal: " + e + " = " + e_other + " = " + e.calculate());
             }
         }
     }
@@ -44,5 +44,3 @@ public class Main {
         return randomNum * 10;
     }
 }
-
-
