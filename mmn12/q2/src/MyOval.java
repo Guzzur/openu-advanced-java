@@ -9,6 +9,9 @@ public class MyOval extends MyBoundedShape {
 
     @Override
     public void draw(Graphics graphics) {
-
+        System.out.println("[Oval] color: " + getColor() + "\n(" + getX1() + "," +
+                getY1() + "," + getX2() + "," + getY2() + ")");
+        graphics.setColor(getColor());
+        graphics.drawOval(getX1(), getY1(), getX2(), getY2());
     }
 }
