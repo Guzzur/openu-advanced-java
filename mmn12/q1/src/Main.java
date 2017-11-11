@@ -3,6 +3,7 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
+        // holds all the expressions
         ArrayList<Expression> expressions = new ArrayList<>();
 
         // (rand + rand) + (rand - rand)
@@ -22,10 +23,15 @@ public class Main {
                 new AdditionExpression(new AtomicExpression(3), new AtomicExpression(2))));
 
         for (Expression e : expressions) {
+            // print the expression
             System.out.println(e);
+
+            // print the calculated value of it
             System.out.println(e.calculate());
 
+            // O(n^2)
             for (Expression e_other : expressions) {
+                // check if it is equal to anoter one
                 if (e != e_other && e.equals(e_other))
                     System.out.println("Equal: " + e + " = " + e_other + " = " + e.calculate());
             }
@@ -38,9 +44,13 @@ public class Main {
      * @return random double
      */
     public static double randDouble() {
-        Random rand = new Random();
-        double randomNum = rand.nextDouble();
-
-        return randomNum * 10;
+        //double rangeMin = 0.0;
+        //double rangeMax = 200.0;
+        Random r = new Random();
+        //double randomValue = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+        //return randomValue;
+        return r.nextDouble();
     }
 }
+
+

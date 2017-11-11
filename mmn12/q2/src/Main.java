@@ -1,36 +1,43 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
+import java.util.ArrayList;
 
-public class Main extends JPanel {
+public class Main {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("MMN12 Q2 v1.0.0");
+        // defines frame (window)
+        JFrame frame = new JFrame("MMN12 Q2 v1.0.2");
+
+        // defines panel to draw on
         MyPanel panel = new MyPanel();
-        Graphics g = panel.getGraphics();
 
+        // default operation for closing window
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // defines window size 400*400
         frame.setSize(400, 400);
-        frame.setVisible(true);
 
-        MyOval oval1 = new MyOval(randInt(), randInt(), randInt(), randInt(), Color.CYAN, true);
-        MyOval oval2 = new MyOval(randInt(), randInt(), randInt(), randInt(), Color.BLUE, false);
-        MyLine line1 = new MyLine(randInt(), randInt(), randInt(), randInt(), Color.BLACK);
-        MyLine line2 = new MyLine(randInt(), randInt(), randInt(), randInt(), Color.GREEN);
-        MyLine line3 = (MyLine)line1.clone();
-        MyRectangle rectangle1 = new MyRectangle(randInt(), randInt(), randInt(), randInt(), Color.YELLOW, true);
-        MyRectangle rectangle2 = new MyRectangle(randInt(), randInt(), randInt(), randInt(), Color.RED, false);
+        // holds shapes
+        ArrayList<MyShape> shapes = new ArrayList<MyShape>();
 
-        //oval1.draw(g);
+        // add 2 shapes of each type
+        shapes.add(new MyOval(randInt(), randInt(), randInt(), randInt(), Color.RED, true));
+        shapes.add(new MyOval(randInt(), randInt(), randInt(), randInt(), Color.BLACK, false));
+        shapes.add(new MyLine(randInt(), randInt(), randInt(), randInt(), Color.BLUE));
+        shapes.add(new MyLine(randInt(), randInt(), randInt(), randInt(), Color.GREEN));
+        shapes.add(new MyRectangle(randInt(), randInt(), randInt(), randInt(), Color.YELLOW, true));
+        shapes.add(new MyRectangle(randInt(), randInt(), randInt(), randInt(), Color.CYAN, false));
 
-        panel.add(oval1);
-        panel.add(oval2);
-        panel.add(line1);
-        panel.add(line2);
-        panel.add(line3);
-        panel.add(rectangle1);
-        panel.add(rectangle2);
+        // add all shapes and its moved py 10 px clones
+        for (MyShape shape: shapes) {
+            panel.addShape(shape);
+            panel.addClone(shape);
+        }
 
+        // add drawing panel to the window
         frame.add(panel);
+        // make the window be visible
+        frame.setVisible(true);
     }
 
     /**

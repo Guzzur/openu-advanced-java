@@ -3,7 +3,7 @@ import java.util.Scanner;
 public abstract class Expression {
     /**
      * Calculates the expression result
-     * Abstract. Should be overriden in extend class
+     * Abstract. Should be overriden in class that extends it
      * @return calculated result
      */
     public abstract double calculate();
@@ -16,11 +16,4 @@ public abstract class Expression {
     public boolean equals(Expression other) {
         return this.calculate() == other.calculate();
     }
-
-    /*
-    @Override
-    public String toString() {
-        return ...;
-    }
-    */
 }
