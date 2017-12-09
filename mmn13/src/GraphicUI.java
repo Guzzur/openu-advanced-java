@@ -17,18 +17,15 @@ public class GraphicUI implements ActionListener{
     private JButton btnCheckAns;
     private JButton btnReplay;
     private JLabel questions[][];
-    public GraphicUI() {
-        this("Exam");
-    }
 
-    public GraphicUI(String frameName) {
+    public GraphicUI(String frameName, Examinator exam) {
         this.frameName = frameName;
+        this.exam = exam;
     }
 
-    public void present(Examinator exam) {
+    public void init() {
         this.frame = new JFrame();
         this.panel = new JPanel();
-        this.exam = exam;
 
         // default operation for closing window
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,6 +45,14 @@ public class GraphicUI implements ActionListener{
 
         this.questions = new JLabel[2][exam.getQuestCount()];
 
+        this.btnCheckAns = new JButton("Check answers");
+        this.btnCheckAns.addActionListener(this);
+
+        this.btnReplay = new JButton("Clean and start again");
+        this.btnCheckAns.addActionListener(this);
+    }
+
+    public void present() {
         for (int i = 0; i < exam.getQuestCount()-1; i+=2) {
             this.questions[even][i] = new JLabel((i+1) + ") " + exam.getQuestion(i) +
                     " [" + exam.getStatus(i).toString() + "]", SwingConstants.LEFT);
@@ -84,11 +89,6 @@ public class GraphicUI implements ActionListener{
 
         this.grade = new JLabel("Your grade is: unknown");
 
-        this.btnCheckAns = new JButton("Check answers");
-        this.btnCheckAns.addActionListener(this);
-
-        this.btnReplay = new JButton("Clean and start again");
-
         this.panel.add(this.grade);
         this.panel.add(new Label());
         this.panel.add(btnCheckAns);
@@ -100,22 +100,25 @@ public class GraphicUI implements ActionListener{
         this.frame.setVisible(true);
     }
 
-    public void drawGui() {
-
-    }
-
     public void actionPerformed(ActionEvent e){
-        int[] ansArray = new int[this.exam.getQuestCount()];
+        if(e.getSource() == this.btnCheckAns) {
+            int[] ansArray = new int[this.exam.getQuestCount()];
 
-        for (int i = 0; i < this.exam.getQuestCount()-1; i+=2) {
-            for (int j=0; j < exam.getNumOfAnswers(); j++) {
-                if (this.radio[i][j].isSelected())
-                    ansArray[i] = j+1;
-                if (this.radio[i+1][j].isSelected())
-                    ansArray[i+1] = j+1;
+            for (int i = 0; i < this.exam.getQuestCount() - 1; i += 2) {
+                for (int j = 0; j < exam.getNumOfAnswers(); j++) {
+                    if (this.radio[i][j].isSelected())
+                        ansArray[i] = j + 1;
+                    if (this.radio[i + 1][j].isSelected())
+                        ansArray[i + 1] = j + 1;
+                }
             }
         }
 
-        this.grade.setText("Your grade is: " + this.exam.calculateResult(ansArray, this.questions));
+        else { }
+
+        frame.invalidate();
+        frame.validate();
+        frame.repaint();
+        // this.grade.setText("Your grade is: " + this.exam.calculateResult(ansArray, this.questions));
     }
 }

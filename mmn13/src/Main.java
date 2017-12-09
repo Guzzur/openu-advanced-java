@@ -3,7 +3,8 @@ public class Main {
         Examinator exam = new Examinator("input\\exam.txt", Examinator.defaultNumOfAnswers);
         exam.buildExam();
 
-        GraphicUI gui = new GraphicUI("Exam");
-        gui.present(exam);
+        GraphicUI gui = new GraphicUI("Exam", exam);
+        gui.init();
+        gui.present();
     }
 }
