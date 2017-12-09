@@ -72,7 +72,19 @@ public class GraphicUI{
         });
 
         this.btnReplay = new JButton("Clean and start again");
-        //this.btnCheckAns.addActionListener(this);
+        this.btnReplay.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                for (int i = 0; i < exam.getQuestCount()-1; i+=2) {
+                    questions[even][i].setText((i + 1) + ") " + exam.getQuestion(i) +
+                            " [unknown]");
+                    questions[odd][i].setText((i + 2) + ") " + exam.getQuestion(i + 1) +
+                            " [unknown]");
+                    buttonGroups[even][i].clearSelection();
+                    buttonGroups[odd][i].clearSelection();
+                    }
+                btnCheckAns.setEnabled(true);
+            }
+        });
     }
 
     public void present() {
@@ -122,27 +134,4 @@ public class GraphicUI{
         // make the window be visible
         this.frame.setVisible(true);
     }
-    /*
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == this.btnCheckAns) {
-            int[] ansArray = new int[this.exam.getQuestCount()];
-
-            for (int i = 0; i < this.exam.getQuestCount() - 1; i += 2) {
-                for (int j = 0; j < exam.getNumOfAnswers(); j++) {
-                    if (this.radio[i][j].isSelected())
-                        ansArray[i] = j + 1;
-                    if (this.radio[i + 1][j].isSelected())
-                        ansArray[i + 1] = j + 1;
-                }
-            }
-        }
-
-        else { }
-
-        frame.invalidate();
-        frame.validate();
-        frame.repaint();
-        // this.grade.setText("Your grade is: " + this.exam.calculateResult(ansArray, this.questions));
-    }
-    */
 }
