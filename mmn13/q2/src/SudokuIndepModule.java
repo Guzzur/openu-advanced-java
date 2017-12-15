@@ -17,6 +17,8 @@ public class SudokuIndepModule {
     }
 
     public boolean updateValue(int index, int value) {
+        if (value < 0 || value > moduleSize)
+            return false;
         if (index >=0 && index < moduleSize) {
             if (!this.checkValidity(index, value))
                 return false;

@@ -1,8 +1,8 @@
 import javax.swing.*;
+import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class GraphicUI {
     private final static int numOfModuleValues = 9;
@@ -35,8 +35,6 @@ public class GraphicUI {
         // define text boxes and fields
         this.pnlsSquares = new JPanel[numOfRowColBlocks][numOfRowColBlocks];
         this.textFields = new JTextField[numOfModuleValues][numOfModuleValues];
-        // indexing as described:           | block row index || block col index || in block row i. || in block col i. }
-        //this.textFieldsList = new JTextField[numOfRowColBlocks][numOfRowColBlocks][numOfRowColBlocks][numOfRowColBlocks];
 
         // set layout to the main grid
         //this.pnlMain.setLayout(new GridLayout(2,1));
@@ -79,6 +77,15 @@ public class GraphicUI {
             this.sudokuIndepSquares[row] = new SudokuIndepModule();
             for(int col = 0; col < numOfModuleValues; col++) {
                 this.textFields[row][col] = new JTextField();
+
+                this.textFields[row][col].addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        checkValidity(true);
+                    }
+                });
+
                 this.textFields[row][col].setFont(font);
                 this.textFields[row][col].setForeground(Color.BLUE);
                 this.textFields[row][col].setHorizontalAlignment(SwingConstants.CENTER);
@@ -103,7 +110,7 @@ public class GraphicUI {
 
         this.btnSetValues.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                if(checkValidity()) {
+                if(checkValidity(true)) {
                     btnSetValues.setEnabled(false);
                     for(int row = 0; row < numOfModuleValues; row++) {
                         for (int col = 0; col < numOfModuleValues; col++) {
@@ -143,14 +150,17 @@ public class GraphicUI {
         this.frame.setVisible(true);
     }
 
-    private boolean checkValidity() {
+    private boolean checkValidity(boolean isClearField) {
         for (int row = 0; row < numOfModuleValues; row++) {
+            this.sudokuIndepRows[row] = new SudokuIndepModule();
             for(int col = 0; col < numOfModuleValues; col++) {
                 if(!this.textFields[row][col].getText().isEmpty()) {
                     int value = Integer.parseInt(this.textFields[row][col].getText());
                     if (!this.sudokuIndepRows[row].updateValue(col, value)) {
-                        //this.textFields[row][col].setText("");
-                        this.textFields[row][col].setForeground(Color.RED);
+                        if (isClearField) {
+                            this.textFields[row][col].setText("");
+                        }
+                        else this.textFields[row][col].setForeground(Color.RED);
                         showMessage(value,row,col,"row");
                         return false;
                     }
@@ -160,13 +170,16 @@ public class GraphicUI {
             }
         }
         for (int col = 0; col < numOfModuleValues; col++) {
+            this.sudokuIndepCols[col] = new SudokuIndepModule();
             for(int row = 0; row < numOfModuleValues; row++) {
                 if(!this.textFields[row][col].getText().isEmpty()) {
                     int value = Integer.parseInt(this.textFields[row][col].getText());
                     if (!this.sudokuIndepCols[col].updateValue(row, value)) {
-                        //this.textFields[row][col].setText("");
-                        this.textFields[row][col].setForeground(Color.RED);
-                        showMessage(value,row,col,"row");
+                        if (isClearField) {
+                            this.textFields[row][col].setText("");
+                        }
+                        else this.textFields[row][col].setForeground(Color.RED);
+                        showMessage(value,row,col,"column");
                         return false;
                     }
                     else this.textFields[row][col].setForeground(Color.BLUE);
@@ -174,13 +187,29 @@ public class GraphicUI {
                 else this.sudokuIndepCols[col].updateValue(row, 0);
             }
         }
+        int squareIndex = 0;
         for(int blockRow = 0; blockRow < numOfRowColBlocks; blockRow++) {
             for (int blockCol = 0; blockCol < numOfRowColBlocks; blockCol++) {
+                int flatSquareIndex = 0;
+                this.sudokuIndepSquares[squareIndex] = new SudokuIndepModule();
                 for(int row = blockRow*3; row < blockRow*3+3; row++) {
                     for (int col = blockCol*3; col < blockCol*3+3; col++) {
-                        //this.textFieldsList[blockRow][blockCol][row%3][col%3] = this.textFields[row][col];
+                        if(!this.textFields[row][col].getText().isEmpty()) {
+                            int value = Integer.parseInt(this.textFields[row][col].getText());
+                            if (!this.sudokuIndepSquares[squareIndex].updateValue(flatSquareIndex, value)) {
+                                if (isClearField) {
+                                    this.textFields[row][col].setText("");
+                                }
+                                else this.textFields[row][col].setForeground(Color.RED);
+                                showMessage(value,row,col,"square");
+                                return false;
+                            }
+                        }
+                        else this.sudokuIndepSquares[squareIndex].updateValue(flatSquareIndex, 0);
+                        flatSquareIndex++;
                     }
                 }
+                squareIndex++;
             }
         }
         return true;
@@ -188,7 +217,7 @@ public class GraphicUI {
 
     private void showMessage(int value, int row, int col, String cause) {
         JOptionPane.showMessageDialog(frame,
-                "Cannot set [" + (row+1) + "," + (col+1) + "] field\n" +
+                "Cannot set [row: " + (row+1) + ", column: " + (col+1) + "] field\n" +
                 "Value " + value + " is already exists in this " + cause,
                 "Validation error",
                 JOptionPane.ERROR_MESSAGE);
