@@ -15,11 +15,11 @@
       <file leaf-file-name="SudokuIndepModule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SudokuIndepModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="362">
+              <caret line="51" column="35" lean-forward="false" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
               <folding>
-                <element signature="e#135#136#0" expanded="true" />
-                <element signature="e#184#185#0" expanded="true" />
+                <element signature="e#264#265#0" expanded="true" />
+                <element signature="e#313#314#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -28,12 +28,10 @@
       <file leaf-file-name="GraphicUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GraphicUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="84" column="42" lean-forward="true" selection-start-line="84" selection-start-column="42" selection-end-line="84" selection-end-column="42" />
+            <state relative-caret-position="697">
+              <caret line="276" column="64" lean-forward="false" selection-start-line="276" selection-start-column="64" selection-end-line="276" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3222#3223#0" expanded="true" />
-                <element signature="e#3289#3290#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -62,6 +60,8 @@
     <findStrings>
       <find>Inte</find>
       <find>sudokuIndepCols</find>
+      <find>upda</find>
+      <find>updateValue</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -75,8 +75,8 @@
         <option value="$PROJECT_DIR$/src/SudokuIndepRow.java" />
         <option value="$PROJECT_DIR$/src/SudokuIndepCol.java" />
         <option value="$PROJECT_DIR$/src/SudokuIndepSquare.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/SudokuIndepModule.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/GraphicUI.java" />
       </list>
     </option>
@@ -302,7 +302,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GraphicUI.java</url>
-          <line>198</line>
+          <line>269</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
@@ -317,8 +317,8 @@
         <state relative-caret-position="17">
           <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
           <folding>
-            <element signature="e#135#136#0" expanded="true" />
-            <element signature="e#184#185#0" expanded="true" />
+            <element signature="e#264#265#0" expanded="true" />
+            <element signature="e#313#314#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -361,8 +361,6 @@
           <caret line="35" column="27" lean-forward="false" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3222#3223#0" expanded="true" />
-            <element signature="e#3289#3290#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -418,33 +416,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/SudokuIndepModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="362">
+          <caret line="51" column="35" lean-forward="false" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+          <folding>
+            <element signature="e#264#265#0" expanded="true" />
+            <element signature="e#313#314#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SudokuIndepModule.java">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#135#136#0" expanded="true" />
-            <element signature="e#184#185#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphicUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="84" column="42" lean-forward="true" selection-start-line="84" selection-start-column="42" selection-end-line="84" selection-end-column="42" />
+        <state relative-caret-position="697">
+          <caret line="276" column="64" lean-forward="false" selection-start-line="276" selection-start-column="64" selection-end-line="276" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3222#3223#0" expanded="true" />
-            <element signature="e#3289#3290#0" expanded="true" />
           </folding>
         </state>
       </provider>
